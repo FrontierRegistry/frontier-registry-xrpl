@@ -1,0 +1,78 @@
+@import "../../assets/scss/mixins";
+
+.my-researches {
+    margin-top: 90px;
+
+    .sidebar {
+        height: calc(100vh - 100px);
+        // margin: 20px 10px;
+        padding: 20px 40px;
+
+        .navlinks {
+            // padding: 50px 100px;
+            min-height: 100%;
+            background-color: rgba(24, 103, 182, 1);
+            padding-top: 100px;
+
+            .navlink-item {
+                padding: 10px 0px;
+
+                a {
+                    text-decoration: none;
+                    color: white;
+                    font-size: 25px;
+                }
+            }
+        }
+
+        @media (max-width: 800px) {
+            height: 400px !important;
+        }
+
+        ;
+    }
+
+    .my-researches-component {
+        padding: 20px 40px 20px 10px;
+        gap: 20px;
+        display: flex;
+        flex-direction: column;
+        z-index: -1;
+
+        .my-researches-title {
+            font-size: 30px;
+            margin: 10px 0;
+        }
+
+        .my-research-item {
+            border: 1px solid black;
+            padding: 10px 20px;
+            border-radius: 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+
+            .my-research-item-title {
+                text-align: start;
+                margin-bottom: 20px;
+                padding-left: 20px;
+            }
+
+            .my-research-item-datetime {
+                text-align: start;
+                border: 1px solid black;
+                border-radius: 20px;
+                width: fit-content;
+                padding: 2px 20px;
+            }
+
+            .right-icon-wrapper {
+                display: flex;
+                position: absolute;
+                align-items: center;
+                right: 50px;
+                cursor: pointer;
+            }
+        }
+    }
+}

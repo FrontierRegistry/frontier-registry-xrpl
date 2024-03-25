@@ -1,0 +1,65 @@
+@import "../../assets/scss/mixins";
+
+.detail-research {
+    margin-top: 90px;
+
+    .sidebar {
+        height: calc(100vh - 100px);
+        // margin: 20px 10px;
+        padding: 20px 40px;
+
+        .navlinks {
+            // padding: 50px 100px;
+            min-height: 100%;
+            background-color: rgba(24, 103, 182, 1);
+            padding-top: 100px;
+
+            .navlink-item {
+                padding: 10px 0px;
+
+                a {
+                    text-decoration: none;
+                    color: white;
+                    font-size: 25px;
+                }
+            }
+        }
+
+        @media (max-width: 800px) {
+            height: 400px !important;
+        }
+
+        ;
+    }
+
+    .detail-research-component {
+        padding: 20px 40px 20px 10px;
+
+        .detail-research-component-header {
+            position: relative;
+
+            h2.detail-research-text {
+                margin: 30px 0;
+            }
+        }
+
+        .ckeditor-component-wrapper {
+            .cke_contents {
+                min-height: 500px !important;
+            }
+
+            &>div:last-child {
+                border: none;
+            }
+
+            .cke_top,
+            .cke_bottom {
+                display: none;
+            }
+        }
+
+        @media (max-width: 800px) {
+            padding: 20px 40px 20px 40px;
+        }
+    }
+}
