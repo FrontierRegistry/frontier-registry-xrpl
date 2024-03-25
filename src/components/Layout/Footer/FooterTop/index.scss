@@ -1,0 +1,91 @@
+@import "../../../../assets/scss/mixins";
+
+.footerTop-component {
+    padding-bottom: 20px;
+    border-bottom: 1px solid white;
+    background-color: rgb(24, 103, 182);
+    font-family: Roboto;
+    color: white;
+
+    .left {
+        padding: 20px;
+
+        .title {
+            font-size: 20px;
+            display: flex;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+    
+        .description {
+            font-size: 16px;
+            display: flex;
+            font-weight: 500;
+            line-height: 1.4;
+            padding: 1px 0px;
+            text-align: start;
+        }
+
+        .input {
+            width: 100%;
+            margin: 0px;
+            justify-content: flex-start;
+            gap: 8px;
+            margin-top: 10px;
+            display: flex;
+
+            input {
+                height: 48px;
+                margin-right: 10px;
+                border: none;
+                background-color: rgb(255, 255, 255);
+                box-sizing: border-box;
+                border-radius: 5px;
+                font-size: 16px;
+                font-weight: 500;
+                color: rgb(4, 18, 29);
+                padding: 0px 10px;
+            }
+
+            button {
+                min-height: 48px;
+                width: 88px;
+                margin: 0px;
+                padding: 0px;
+                cursor: inherit;
+                background: none rgb(33, 129, 227);
+                border: none;
+                text-align: center;
+                font-size: 16px;
+                font-weight: 700;
+                line-height: 1;
+                border-radius: 5px;
+                color: white;
+            }
+        }
+    }
+
+    .right {
+        display: flex;
+        padding: 20px;
+
+        .icons {
+            display: flex;
+
+            .icon {
+                align-self: center;
+                height: 32px;
+                width: 32px;
+                margin: 12px;
+                padding: 0px;
+                text-align: center;
+                background: none;
+                border: none;
+                cursor: inherit;
+                display: block;
+                color: rgb(255, 255, 255);
+                border-radius: 4px;
+            }
+        }
+    }
+}

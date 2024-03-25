@@ -1,0 +1,101 @@
+@import "../../assets/scss/mixins";
+
+.banner-component {
+    background-color: rgb(24, 103, 182);
+    justify-content: center;
+    overflow: visible;
+    display: flex;
+    margin-top: 50px;
+
+    .left {
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0);
+
+        #text1 {
+            min-height: 45px;
+            word-break: break-word;
+            font-family: Barlow;
+            font-size: 16px;
+            font-weight: 400;
+            color: rgb(59, 59, 59);
+            line-height: 1.4;
+        }
+
+        #text2 {
+            color: rgb(59, 59, 59);
+            text-align: left;
+            padding-bottom: 20px;
+        }
+
+        #text3 {
+            text-align: left;
+            min-height: 45px;
+            height: max-content;
+            white-space: pre-wrap;
+            overflow: visible;
+            word-break: break-word;
+            font-family: Roboto;
+            font-size: 14px;
+            font-weight: 400;
+            color: rgb(255, 255, 255);
+            line-height: 1.4;
+            padding: 2px 0px;
+            border-radius: 0px;
+        }
+
+        #text4 {
+            z-index: 14;
+            align-self: flex-start;
+            order: 40;
+            min-height: 0px;
+            height: max-content;
+            white-space: pre-wrap;
+            overflow: visible;
+            word-break: break-word;
+            font-family: Roboto;
+            font-size: 48px;
+            font-weight: 700;
+            color: rgb(4, 18, 29);
+            line-height: 1.5;
+            text-decoration: none;
+            text-align: left;
+        }
+
+        button.explorer {
+            min-height: 50px;
+            min-width: 150px;
+            margin: 20px 0;
+            cursor: pointer;
+            background: none rgb(33, 129, 227);
+            border: none;
+            text-align: center;
+            font-family: Roboto;
+            font-size: 16px;
+            font-weight: 700;
+            color: rgb(255, 255, 255);
+            line-height: 1;
+            border-radius: 5px;
+            box-shadow: none;
+        }
+    }
+
+    .banner-text {
+        text-align: left;
+        font-family: Barlow;
+        font-size: 24px;
+        font-weight: 500;
+        color: rgb(255, 255, 255);
+        line-height: 1.5;
+    }
+
+    .right {
+        border-radius: 5px;
+        padding: 20px;
+
+        img {
+            border-radius: 5px;
+            visibility: visible;
+            width: 100%;
+        }
+    }
+}

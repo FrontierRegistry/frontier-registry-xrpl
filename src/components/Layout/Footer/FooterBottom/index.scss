@@ -1,0 +1,21 @@
+@import "../../../../assets/scss/mixins";
+
+.footerBottom-component {
+    display: flex;
+    color: white;
+    justify-content: space-between;
+    font-family: Roboto;
+    padding: 10px 0;
+    
+    .copyright {
+        display: flex;
+    }
+
+    .terms{
+        display: flex;
+        
+        div {
+            margin-left: 10px;
+        }
+    }
+}

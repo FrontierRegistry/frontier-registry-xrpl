@@ -1,0 +1,48 @@
+@import "../../../../assets/scss/mixins";
+
+.footerMiddle-component {
+    padding: 30px 0;
+    border-bottom: 1px solid white;
+    font-family: Roboto;
+
+    .item {
+        padding: 20px;
+    }
+
+    .logo-component {
+        img {
+            display: flex;
+        }
+    
+    }
+
+    div {
+        font-size: 14px;
+        text-align: left;
+        color: white;
+    }
+
+    p {
+        font-size: 16px;
+        font-weight: 500;
+        color: rgb(255, 255, 255);
+        line-height: 1.4;
+        padding: 1px 0px;
+        cursor: pointer;
+
+        &.title {
+            font-size: 18px;
+            font-weight: 700;
+            color: rgb(255, 255, 255);
+            line-height: 1.2;
+            border-radius: 0px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+}

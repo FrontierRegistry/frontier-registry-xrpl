@@ -1,0 +1,186 @@
+@import "../../../assets/scss/mixins";
+
+.header {
+    z-index: 0;
+
+    &.navbar {
+        position: fixed;
+        background: white;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        top: 0;
+    }
+
+    .custom-navbar-container {
+        $color-navbar: #434d57;
+        color: $color-navbar;
+
+        .logo {
+            img {
+                height: 68px;
+            }
+        }
+
+        .search {
+            align-self: center;
+            min-width: 240px;
+            max-width: 480px;
+            align-items: center;
+            width: 240px;
+            height: 48px;
+            display: flex;
+            align-self: center;
+            justify-content: flex-end;
+            overflow: visible;
+            background-color: rgb(255, 255, 255);
+            border-style: solid;
+            border-width: 1px;
+            border-color: rgba(171, 171, 171, 0.25);
+            border-radius: 5px;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            i {
+                font-size: 18px;
+                padding: 6px;
+            }
+
+            input {
+                align-self: stretch;
+                min-width: 206px;
+                min-height: 0px;
+                width: 206px;
+                margin: 0px;
+                border: none;
+                background-color: transparent;
+                box-sizing: border-box;
+                border-radius: 5px;
+                font-family: Roboto;
+                font-size: 16px;
+                font-weight: 500;
+                color: rgb(4, 18, 29);
+                padding: 0px 4px;
+            }
+        }
+
+        .nav-menu-wrap {
+            flex-grow: 0;
+
+            a {
+                text-decoration: none !important;
+            }
+
+            .dropdown-item {
+                color: $color-navbar  !important;
+                font-size: 1.3rem !important;
+                font-weight: 600 !important;
+
+                &:hover,
+                &:focus {
+                    background-color: rgba(217, 217, 217, 0) !important;
+                }
+            }
+
+            .funding-nav-dropdown {
+                margin-left: 0.2rem;
+                display: flex;
+                justify-content: center;
+
+                .dropdown-item a {
+                    color: $color-navbar;
+                }
+            }
+
+            .custom-nav-link,
+            .nav-link {
+                color: $color-navbar;
+                align-self: center;
+                width: max-content;
+                height: max-content;
+                font-size: 18px;
+                text-align: center;
+                line-height: 1.2;
+                font-weight: 600;
+
+                padding: .5rem 0.6rem;
+                margin-top: .4rem;
+                margin-bottom: .4rem;
+                cursor: pointer;
+
+                // transition: all 0.3s ease 0s;
+                display: flex;
+                align-items: center;
+
+                &:hover,
+                &:focus {
+                    border-bottom: 1px solid blue;
+                    color: black;
+                }
+            }
+
+            .custom-logo {
+                padding: .1rem .5rem;
+                justify-content: center;
+
+                img,
+                svg {
+                    height: 38px;
+                    width: 38px;
+                }
+            }
+        }
+
+        // @media screen and (max-width: 768px) {
+        @media screen and (max-width: 991px) {
+            #responsive-navbar-nav {
+                padding: 1rem 2rem !important;
+                background-color: #ffffff33;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+
+            .dropdown-toggle {
+                margin-left: 1.5rem;
+            }
+
+            .funding-nav-dropdown {
+                margin-left: 0rem;
+            }
+        }
+
+        @media screen and (min-width: 991px) {
+            .funding-nav-dropdown.nav-item.dropdown {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        *:focus {
+            outline: none;
+        }
+    }
+}
+
+.disconnect-modal {
+    .modal-dialog {
+        top: 40%;
+
+        .modal-body {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 30px ;
+            font-size: 20px;
+
+            .logout-label {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+
+            button {
+                border: none;
+            }
+        }
+    }
+}
