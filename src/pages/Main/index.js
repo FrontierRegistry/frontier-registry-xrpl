@@ -21,7 +21,7 @@ const getXrplClient = () => {
   return xrplClient
 }
 
-const Wallet1 = Wallet.fromSeed('sEdSx7BuUeNq6sBEZ6hzXavcymeDvY9');
+const Wallet1 = Wallet.fromSeed('sEdVsttB6eqqL39LURRfG1LsUbDoDfL'); // Public : rEfdm8aEDaViMx5pAv5Wz344cCB8zdgtJS
 
 const Main = () => {
 
