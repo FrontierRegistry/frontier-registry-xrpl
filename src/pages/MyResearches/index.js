@@ -3,31 +3,26 @@ import { useNavigate, useLocation, } from 'react-router-dom';
 import { Row, Col, } from 'react-bootstrap';
 import Moment from 'react-moment';
 import moment from 'moment';
+import { useWeb3Modal } from '../../services/Web3ModalContext';
 import { AiOutlineRight } from 'react-icons/ai';
-import Web3 from 'web3';
-import { useWeb3Auth } from "../../services/web3auth";
 import { navLinks } from '../../services/constants';
 import { contractAddress } from '../../config/chainConfig';
 import contractAbi from '../../config/abi.json';
 import "./index.scss";
 
-const web3 = new Web3(window.ethereum);
-const contract = new web3.eth.Contract(contractAbi, contractAddress);
-
 const MyResearches = () => {
-  const { provider, getAccounts } = useWeb3Auth();
-  const [wallet, setWallet] = useState('');
+  const { provider, address, web3 } = useWeb3Modal();
   const [myResearches, setMyResearches] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
       if (provider === null) return;
-      const account = await getAccounts();
-      setWallet(account[0]);
       console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>33333333333333333");
-      const myResearchList = await contract.methods.getResearchesByWallet(account[0]).call();
+      const contract = new web3.eth.Contract(contractAbi, contractAddress);
+      const myResearchList = await contract.methods.getResearchesByWallet(address).call();
       console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>444444444444444");
+      console.log("my researches: ", myResearchList);
       const myResearches = myResearchList.map((item, _) => (
         {
           title: item.title,
@@ -36,8 +31,10 @@ const MyResearches = () => {
         }
       ));
       setMyResearches(myResearches);
+
+      console.log("my researches: ", myResearchList);
     })();
-  }, [wallet, provider]);
+  }, [provider, address]);
 
   const location = useLocation();
   useEffect(() => {

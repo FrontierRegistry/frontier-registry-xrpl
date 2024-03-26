@@ -1,3 +1,4 @@
+import { color } from "@mui/system";
 import { Col, Row } from "react-bootstrap";
 import { useNavigate } from 'react-router-dom';
 import Image1 from '../../assets/img/article1.jpeg'
@@ -12,9 +13,9 @@ const Research = () => {
 
     const recentResearches = [
         {
-            title: 'Mario Virtual World',
+            title: 'On-chain Science Publishing',
             banner: Image4,
-            description: 'Mario first edition collection. The First 10 will be the originals, before moving to the next...',
+            description: 'On-chain Science Publishing first edition collection. The First 10 will be the originals, before moving to the next...',
             status: 'Live',
         },
         {
@@ -24,7 +25,7 @@ const Research = () => {
             status: 'Live',
         },
         {
-            title: 'Mario Virtual World',
+            title: 'On-chain Science Publishing',
             banner: Image5,
             description: 'REW Racing is the latest Play-to-Earn competitive racing metaverse from the REW Motorsport team...',
             status: 'Live',
@@ -34,8 +35,14 @@ const Research = () => {
     return (
         <Row className="research-component">
             <section className="new-research">
-                <button className="explainer-video">
-                    Explainer Video
+                <button
+                    className="explainer-video"
+                >
+                    <a
+                        href="https://www.youtube.com/watch?v=lAxw35kjUzI"
+                    >
+                        Explainer Video
+                    </a>
                 </button>
                 <section className="content">
                     #DeSci

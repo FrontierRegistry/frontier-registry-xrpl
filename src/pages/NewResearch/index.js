@@ -5,33 +5,32 @@ import {
   Col,
 } from 'react-bootstrap'
 import { CKEditor } from 'ckeditor4-react';
-import Web3 from 'web3';
+import { useWeb3Modal } from '../../services/Web3ModalContext';
 import { navLinks } from '../../services/constants';
 import TitleConfirmModal from '../../components/TitleConfirmModal';
 import {
   pinJSONToIPFS,
 } from '../../services/pinata';
-import { useWeb3Auth } from "../../services/web3auth";
 import "./index.scss";
 import { contractAddress } from '../../config/chainConfig';
 import contractAbi from '../../config/abi.json';
-const web3 = new Web3(window.ethereum);
-const contract = new web3.eth.Contract(contractAbi, contractAddress);
 
 const NewResearch = () => {
-  const { provider, getAccounts } = useWeb3Auth();
+  const { provider, address, web3 } = useWeb3Modal();
   const [content, setContent] = useState('');
   const [title, setTitle] = useState('');
   const [isPreview, setIsPreview] = useState(false);
   const [show, setShow] = useState(false);
-  const [wallet, setWallet] = useState('');
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   const handleConfirm = async () => {
     // close modal
     handleClose();
 
+    const contract = new web3.eth.Contract(contractAbi, contractAddress);
     const newResearchId = await contract.methods.getCurrentId().call() + 1;
+    console.log("new research id: ", newResearchId)
 
     // publish research to chain
     const JSONBody = {
@@ -57,7 +56,7 @@ const NewResearch = () => {
         )
         .send({
           to: contractAddress,
-          from: wallet,
+          from: address,
           gasLimit: 2000000,
         });
 
@@ -78,14 +77,6 @@ const NewResearch = () => {
   useEffect(() => {
     console.log("title: ", title);
   }, [title])
-
-  useEffect(() => {
-    (async () => {
-      if (provider === null) return;
-      const account = await getAccounts();
-      setWallet(account[0]);
-    })();
-  }, [provider]);
 
   const location = useLocation();
   useEffect(() => {

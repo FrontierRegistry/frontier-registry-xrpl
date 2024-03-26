@@ -4,8 +4,6 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-
-
 const TitleConfirmModal = ({ show, handleClose, title, handleConfirm, setTitle}) => {
 
     return (

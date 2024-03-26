@@ -1,13 +1,21 @@
 import { Col, Row } from "react-bootstrap";
+import { useNavigate } from "react-router";
 import logo from '../../../../assets/img/logo.jpg';
 import "./index.scss";
 
 const FooterMiddle = () => {
+    const navigate = useNavigate();
 
     return (
         <Row className="footerMiddle-component">
             <Col xl={3} lg={4} md={6} sm={6} xs={6} className="logo-component item">
-                <img src={logo} />
+                <a
+                    href="https://www.youtube.com/watch?v=KMYVR8T1BZ8"
+                >
+                    <img
+                        src={logo}
+                    />
+                </a>
                 <div>
                     should read FrontierRegistry
                 </div>
@@ -23,7 +31,9 @@ const FooterMiddle = () => {
                 <p>
                     IP /Science/ Engineering minted as NFTs
                 </p>
-                <p>
+                <p
+                    onClick={() => navigate('/my-research')}
+                >
                     New Research Published
                 </p>
             </Col>

@@ -9,6 +9,6 @@ export const navLinks = [
     },
     {
         name: 'My Research',
-        href: '/my-researches',
+        href: '/my-research',
     },
 ];
