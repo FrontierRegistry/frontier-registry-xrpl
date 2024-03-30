@@ -2,7 +2,7 @@
 
 - Copy & Modify .env variables:
 
-$ cp .env .env.example
+$ cp .env.example .env
 
 - Install dependencies:
 
