@@ -8,6 +8,14 @@ import './index.scss';
 import axios from "axios";
 
 const Main = () => {
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [img, setImg] = useState([]);
+    const [tokenID, setTokenID] = useState("");
+    const [image, setImage] = useState("");
+    const [file, setFile] = useState("");
+    const [ipfsUri, setIpfsUri] = useState("");
+    const [ipfsImg, setIpfsImg] = useState("");
 
     const location = useLocation();
     useEffect(() => {
