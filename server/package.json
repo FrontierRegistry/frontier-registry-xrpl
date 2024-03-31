@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "author": "Sparadrap1101 <Alexis Cerio>",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "dependencies": {
+    "canvas": "^2.11.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mime": "^4.0.1",
+    "multer": "^1.4.5-lts.1"
+  }
+}
