@@ -18,10 +18,11 @@ const MyResearches = () => {
   useEffect(() => {
     (async () => {
       if (provider === null) return;
-      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>33333333333333333");
-      const contract = new web3.eth.Contract(contractAbi, contractAddress);
-      const myResearchList = await contract.methods.getResearchesByWallet(address).call();
-      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>444444444444444");
+      // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>33333333333333333");
+      // const contract = new web3.eth.Contract(contractAbi, contractAddress);
+      // const myResearchList = await contract.methods.getResearchesByWallet(address).call();
+      // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>444444444444444");
+      const myResearchList = [];
       console.log("my researches: ", myResearchList);
       const myResearches = myResearchList.map((item, _) => (
         {
