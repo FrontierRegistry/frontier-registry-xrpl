@@ -5,67 +5,51 @@ import {
   Col,
 } from 'react-bootstrap'
 import { CKEditor } from 'ckeditor4-react';
-import { useWeb3Modal } from '../../services/Web3ModalContext';
 import { navLinks } from '../../services/constants';
 import TitleConfirmModal from '../../components/TitleConfirmModal';
-import {
-  pinJSONToIPFS,
-} from '../../services/pinata';
 import "./index.scss";
-import { contractAddress } from '../../config/chainConfig';
-import contractAbi from '../../config/abi.json';
+import axios from "axios";
 
 const NewResearch = () => {
-  const { provider, address, web3 } = useWeb3Modal();
   const [content, setContent] = useState('');
   const [title, setTitle] = useState('');
+  const [authors, setAuthors] = useState('');
+  const [image, setImage] = useState('');
+  const [tokenID, setTokenID] = useState('');
+  const [file, setFile] = useState('');
+  const [description, setDescription] = useState('');
+  const [chooseText, setChooseText] = useState(false);
   const [isPreview, setIsPreview] = useState(false);
   const [show, setShow] = useState(false);
+  const [wait, setWait] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleWait = () => setWait(true);
+  const handleStopWait = () => setWait(false);
+  const handleShowText = () => setChooseText(true);
+  const handleShowFile = () => setChooseText(false);
 
   const handleConfirm = async () => {
-    // close modal
     handleClose();
+    handleWait();
 
-    const contract = new web3.eth.Contract(contractAbi, contractAddress);
-    const newResearchId = await contract.methods.getCurrentId().call() + 1;
-    console.log("new research id: ", newResearchId)
+    const response = await axios.post("http://localhost:8080/api/v1/mint", image, {
+      params: {
+        authors: authors,
+        title: title,
+        description: description
+      }
+    });
 
-    // publish research to chain
-    const JSONBody = {
-      name: `Frontier Dao Research ${newResearchId}`,
-      description: title,
-      image: 'https://mirror-media.imgix.net/nft/K9qSJMuXh47G5yr-3druc.jpg?h=null&w=null&auto=compress',
-      attributes: [
-        {
-          trait_type: "title",
-          value: title,
-        },
-      ]
-    }
+    setTokenID(response.data.TokenID);
+    console.log("Transaction hash of the token:", response.data.Hash);
 
-    const { success, pinataUrl } = await pinJSONToIPFS(JSONBody);
-    console.log("success: ", success);
-    if (success) {
-      await contract.methods
-        .publishResearch(
-          title,
-          content,
-          pinataUrl,
-        )
-        .send({
-          to: contractAddress,
-          from: address,
-          gasLimit: 2000000,
-        });
-
-      window.alert("research published");
-    }
+    handleStopWait();
   }
 
   const handlePublish = async () => {
-    if (content == '') {
+    console.log(content)
+    if (content == '' && chooseText) {
       window.alert("Blank content!");
       return;
     }
@@ -74,9 +58,13 @@ const NewResearch = () => {
     handleShow();
   }
 
-  useEffect(() => {
-    console.log("title: ", title);
-  }, [title])
+  async function handleChange(e) {
+    const formData = new FormData();
+    formData.append("my-file", e.target.files[0], e.target.files[0].name);
+
+    setImage(formData);
+    setFile(URL.createObjectURL(e.target.files[0]));
+  }
 
   const location = useLocation();
   useEffect(() => {
@@ -116,37 +104,91 @@ const NewResearch = () => {
         <Col md="8" className='new-research-component'>
           <div className='new-research-component-header'>
             <h2 className='new-research-text'>New Research</h2>
-            <div className='buttons'>
-              <button
-                onClick={() => setIsPreview(!isPreview)}
-              >
-                {
-                  isPreview ? 'Edit' : 'Preview'
-                }
-              </button>
-              <button
-                onClick={() => handlePublish()}
-              >
-                Publish
-              </button>
-            </div>
-          </div>
-          <div
-            className={isPreview ? 'ckeditor-component-wrapper preview-mode' : 'ckeditor-component-wrapper'}
-          >
-            <CKEditor
-              initData=""
-              onInstanceReady={() => {
-                console.log("editor is ready");
-              }
-              }
-              onChange={(event) => {
-                setContent(event.editor.getData());
-              }}
 
-              readOnly={isPreview ? true : false}
-            />
-          </div >
+            { chooseText ?
+            <div>
+              <div className='buttons'>
+                <button
+                  onClick={() => setIsPreview(!isPreview)}
+                >
+                  {
+                    isPreview ? 'Edit' : 'Preview'
+                  }
+                </button>
+                <button
+                  onClick={() => handlePublish()}
+                >
+                  Publish
+                </button>
+              </div>
+
+              <div
+                className={isPreview ? 'ckeditor-component-wrapper preview-mode' : 'ckeditor-component-wrapper'}
+              >
+                <CKEditor
+                  initData=""
+                  onInstanceReady={() => {
+                    console.log("editor is ready");
+                  }
+                  }
+                  onChange={(event) => {
+                    setContent(event.editor.getData());
+                  }}
+
+                  readOnly={isPreview ? true : false}
+                />
+              </div >
+              <button onClick={handleShowFile}>Back</button>
+            </div> :
+            <div>
+              <div className='buttons'>
+                <button
+                  onClick={() => handlePublish()}
+                >
+                  Publish
+                </button>
+              </div>
+
+              <div>
+                <h6>Select the mode you prefere for your research:</h6>
+              </div>
+
+              <Row className="choose-file-or-text">
+                <Col>
+                  <button onClick={handleShowText}>Enter Text</button>
+                </Col>
+
+                <Col>
+                  <p><strong>OR</strong></p>
+                  <img src={file} style={{ maxWidth: "100px", maxHeight: "100px" }} />
+                </Col>
+
+                <Col>
+                  <input type="file" id="file" className="inputfile" onChange={handleChange} />
+                </Col>
+              </Row>
+
+              {wait && <b>Please wait few seconds for the transaction to process...</b>}
+
+              {tokenID && (
+                <div>
+                  <h3><b>NFT minted!</b></h3>
+                  <p>
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={`https://test.bithomp.com/nft/${tokenID}`}
+                      style={{ color: 'black' }}
+                    >
+                    Check your transaction on XRP Ledger here!
+                    </a>
+                  </p>
+                </div>
+              )}
+            </div>
+            }
+
+          </div>
         </Col>
       </Row>
       <TitleConfirmModal
@@ -155,6 +197,10 @@ const NewResearch = () => {
         title={title}
         handleConfirm={handleConfirm}
         setTitle={setTitle}
+        authors={authors}
+        setAuthors={setAuthors}
+        description={description}
+        setDescription={setDescription}
       />
     </div>
   )
