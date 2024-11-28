@@ -1,4 +1,4 @@
-# Frontier Research XRPL
+# Frontier Registry Research XRPL
 
 - Copy & Modify .env variables:
 
